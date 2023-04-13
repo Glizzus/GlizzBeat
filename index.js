@@ -9,7 +9,7 @@ const { readFile } = require('fs/promises');
     const client = new Client({ intents: [GatewayIntentBits.Guilds]});
     await client.login(token);
     const user = await client.users.fetch(userId);
-    
+
     for (const url of urls) {
         const serviceUp = true;
         const check = async () => {
@@ -20,6 +20,7 @@ const { readFile } = require('fs/promises');
                 }
                 user.send(`Service ${url} is down`);
                 serviceUp = false;
+                return;
             }
             serviceUp = true;
         }
